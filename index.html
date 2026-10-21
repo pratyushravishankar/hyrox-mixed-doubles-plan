@@ -34,6 +34,10 @@
     .loads { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px; margin-top:10px; }
     .load { padding:12px; border:1px solid var(--line); border-radius:9px; }
     .load strong { display:block; }
+    .profile-tabs { display:flex; gap:8px; margin:0 0 16px; padding:5px; border-radius:10px; background:#edf2f5; }
+    .profile-tab { flex:1; border:0; border-radius:7px; padding:10px 14px; background:transparent; color:var(--muted); font:inherit; font-weight:750; cursor:pointer; }
+    .profile-tab[aria-selected="true"] { background:var(--blue); color:#fff; box-shadow:0 1px 4px #172b3a22; }
+    .profile-panel[hidden] { display:none; }
     .checkin { display:grid; grid-template-columns:1fr 1fr; gap:12px 24px; }
     .checkin div { padding-bottom:8px; border-bottom:1px solid var(--line); }
     footer { margin:22px 2px 0; color:var(--muted); font-size:.84rem; }
@@ -45,28 +49,34 @@
   <header>
     <div class="eyebrow">HYROX · Mixed Doubles</div>
     <h1>Shared training plan</h1>
-    <p class="muted">The agreed sample week. We’ll use this format as the starting point for future updates.</p>
+    <p class="muted">Choose a profile to see that athlete’s sessions. Thursday’s partner workout is the same in both views.</p>
     <span class="week">Thursday 22 – Sunday 25 October 2026</span>
   </header>
 
   <section aria-labelledby="week-plan">
     <h2 id="week-plan">This week</h2>
-    <div class="sessions">
+    <div class="profile-tabs" role="tablist" aria-label="Choose athlete">
+      <button class="profile-tab" id="tab-yuthika" type="button" role="tab" aria-selected="false" aria-controls="panel-yuthika" tabindex="-1">Yuthika</button>
+      <button class="profile-tab" id="tab-pratyush" type="button" role="tab" aria-selected="true" aria-controls="panel-pratyush" tabindex="0">Pratyush</button>
+    </div>
+
+    <div class="profile-panel" id="panel-yuthika" role="tabpanel" aria-labelledby="tab-yuthika" hidden>
+      <div class="sessions">
       <article class="session">
         <h3><span class="day">Thursday</span> Partner workout · 3 rounds</h3>
         <p>Complete the following sequence three times. Rest 90 seconds after the stations before starting the next round.</p>
         <div class="round">
           <ol>
             <li><span class="mode together">TOGETHER · SAME TIME</span> Treadmill run for 4 minutes. Choose your own speeds; start and finish the interval together.</li>
-            <li><span class="mode ygig">YOU GO, I GO</span> SkiErg: Athlete 1 completes 300 m, then Athlete 2 completes 200 m. The other rests during each turn.</li>
-            <li><span class="mode ygig">YOU GO, I GO</span> Row: Athlete 1 completes 300 m, then Athlete 2 completes 200 m. The other rests during each turn.</li>
+            <li><span class="mode ygig">YOU GO, I GO</span> SkiErg: Pratyush completes 300 m, then Yuthika completes 200 m. The other rests during each turn.</li>
+            <li><span class="mode ygig">YOU GO, I GO</span> Row: Pratyush completes 300 m, then Yuthika completes 200 m. The other rests during each turn.</li>
             <li><span class="mode ygig">YOU GO, I GO</span> Sled push: 12.5 m each, alternating turns.</li>
             <li><span class="mode ygig">YOU GO, I GO</span> Sled pull: 12.5 m each, alternating turns.</li>
           </ol>
         </div>
         <div class="loads">
-          <div class="load"><strong>Athlete 1</strong>Push 152 kg · Pull 103 kg</div>
-          <div class="load"><strong>Athlete 2</strong>Push 120 kg · Pull 85 kg</div>
+          <div class="load"><strong>Pratyush</strong>Push 152 kg · Pull 103 kg</div>
+          <div class="load"><strong>Yuthika</strong>Push 120 kg · Pull 85 kg</div>
         </div>
         <p class="muted">Sled loads are provisional training loads and include the sled where its mass is known. Aim for controlled, repeatable lengths, around RPE 7. Reduce the load if technique breaks down or the push/pull becomes a grind.</p>
       </article>
@@ -98,6 +108,45 @@
         <h3><span class="day">Sunday</span> Optional easy effort or rest</h3>
         <p>Choose either 20–30 minutes of easy cycling at RPE 2–3, or take the day off.</p>
       </article>
+      </div>
+    </div>
+
+    <div class="profile-panel" id="panel-pratyush" role="tabpanel" aria-labelledby="tab-pratyush">
+      <div class="sessions">
+      <article class="session">
+        <h3><span class="day">Thursday</span> Partner workout · 3 rounds</h3>
+        <p>Complete the following sequence three times. Rest 90 seconds after the stations before starting the next round.</p>
+        <div class="round">
+          <ol>
+            <li><span class="mode together">TOGETHER · SAME TIME</span> Treadmill run for 4 minutes. Choose your own speeds; start and finish the interval together.</li>
+            <li><span class="mode ygig">YOU GO, I GO</span> SkiErg: Pratyush completes 300 m, then Yuthika completes 200 m. The other rests during each turn.</li>
+            <li><span class="mode ygig">YOU GO, I GO</span> Row: Pratyush completes 300 m, then Yuthika completes 200 m. The other rests during each turn.</li>
+            <li><span class="mode ygig">YOU GO, I GO</span> Sled push: 12.5 m each, alternating turns.</li>
+            <li><span class="mode ygig">YOU GO, I GO</span> Sled pull: 12.5 m each, alternating turns.</li>
+          </ol>
+        </div>
+        <div class="loads">
+          <div class="load"><strong>Pratyush</strong>Push 152 kg · Pull 103 kg</div>
+          <div class="load"><strong>Yuthika</strong>Push 120 kg · Pull 85 kg</div>
+        </div>
+        <p class="muted">Sled loads are provisional training loads and include the sled where its mass is known. Aim for controlled, repeatable lengths, around RPE 7. Reduce the load if technique breaks down or the push/pull becomes a grind.</p>
+      </article>
+
+      <article class="session rest">
+        <h3><span class="day">Friday</span> Rest</h3>
+        <p>No workout planned.</p>
+      </article>
+
+      <article class="session">
+        <h3><span class="day">Saturday</span> Group session with Rahaam</h3>
+        <p>Workout TBC.</p>
+      </article>
+
+      <article class="session">
+        <h3><span class="day">Sunday</span> Easy cycle</h3>
+        <p>30–40 minutes at an easy, conversational effort (RPE 2–3).</p>
+      </article>
+      </div>
     </div>
   </section>
 
@@ -114,5 +163,29 @@
 
   <footer>Last updated: 22 October 2026 · Race date currently assumed to be 6 December 2026.</footer>
 </main>
+<script>
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+  function activateTab(tab) {
+    tabs.forEach((item) => {
+      const selected = item === tab;
+      item.setAttribute('aria-selected', String(selected));
+      item.tabIndex = selected ? 0 : -1;
+    });
+    panels.forEach((panel) => { panel.hidden = panel.id !== tab.getAttribute('aria-controls'); });
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activateTab(tab));
+    tab.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        const delta = event.key === 'ArrowRight' ? 1 : -1;
+        const next = tabs[(index + delta + tabs.length) % tabs.length];
+        activateTab(next);
+        next.focus();
+      }
+    });
+  });
+</script>
 </body>
 </html>
