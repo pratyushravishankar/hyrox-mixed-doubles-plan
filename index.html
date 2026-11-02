@@ -284,6 +284,21 @@
     });
   });
 
+  document.querySelectorAll("[data-copy-week]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const [profile, week] = button.dataset.copyWeek.split("-");
+      const root = document.getElementById("panel-" + (profile === "y" ? "yuthika" : "pratyush"));
+      const name = profile === "y" ? "Yuthika" : "Pratyush";
+      const lines = [name + " · Week 2 workout notes"];
+      for (const field of root.querySelectorAll('[data-note-key^="' + profile + '-week2-"]')) {
+        lines.push(field.previousElementSibling.textContent + ": " + (field.value.trim() || "no note"));
+      }
+      const status = document.getElementById(profile + "-copy-status");
+      try { await navigator.clipboard.writeText(lines.join("\\n")); status.textContent = "Copied Week 2 notes. Paste them into either training chat for the next update."; }
+      catch { status.textContent = "Clipboard unavailable; select and copy the notes manually."; }
+    });
+  });
+
   const tabs = [...document.querySelectorAll('[role="tab"]')];
   const panels = [...document.querySelectorAll('[role="tabpanel"]')];
   function activateTab(tab) {
